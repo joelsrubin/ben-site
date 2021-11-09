@@ -1,9 +1,9 @@
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo } from 'react';
 import Grid from './Grid.jsx';
 import axios from 'axios';
 
-export default function Sport({ data, apiKey }) {
+function Sport({ data, apiKey }) {
 
   const { id } = useParams();
   const [info, setInfo] = useState([]);
@@ -14,11 +14,11 @@ export default function Sport({ data, apiKey }) {
         return item.title === id;
       });
       const response = await axios.get(`https://api.the-odds-api.com/v4/sports/${findKey[0].key}/odds/?apiKey=${apiKey}&regions=us`);
-      console.log('response: ', response);
+
       setInfo(response.data);
     }
     fetchData();
-  }, [id]);
+  }, []);
 
 
 
@@ -30,3 +30,5 @@ export default function Sport({ data, apiKey }) {
     </div>
   );
 }
+
+export default memo(Sport);

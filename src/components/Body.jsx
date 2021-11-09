@@ -1,6 +1,7 @@
 import Grid from './Grid.jsx';
+import { memo } from 'react';
 
-export default function Body({ data, error }) {
+function Body({ data, error }) {
 
   if (error) {
     return (
@@ -18,3 +19,5 @@ export default function Body({ data, error }) {
     </div>
   );
 }
+
+export default memo(Body);
