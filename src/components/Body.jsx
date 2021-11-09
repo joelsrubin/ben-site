@@ -1,3 +1,5 @@
+import Grid from './Grid.jsx';
+
 export default function Body({ data, error }) {
 
   if (error) {
@@ -11,17 +13,8 @@ export default function Body({ data, error }) {
 
   return (
     <div className="body">
-      <h1 className="text-6xl font-medium text-white">sports</h1>
-      <div className="grid grid-cols-3">
-        {data.map((item, index) => {
-          return (
-            <div key={index} className="text-white px-4">
-              <h2 className="text-2xl font-medium">{item.description}</h2>
-              <p className="text-xl">{item.title}</p>
-            </div>
-          );
-        })}
-      </div>
+      <h1 className="text-6xl font-medium text-white py-5">sports</h1>
+      <Grid data={data} type='sports' />
     </div>
   );
 }

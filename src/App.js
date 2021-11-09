@@ -1,9 +1,11 @@
 
 import './App.css';
 import { useState, useEffect } from 'react';
+import { Routes, Route } from "react-router-dom";
 import Header from './components/Header.jsx';
 import Body from './components/Body.jsx';
 import axios from 'axios';
+import Sport from './components/Sport.jsx';
 import { key } from './EnvVars.js';
 
 const { API_KEY } = key;
@@ -31,7 +33,13 @@ function App() {
       <header className="App-header">
         <Header />
       </header>
-      <Body data={data} error={error} />
+      <Routes>
+
+
+        <Route path="/" element={<Body data={data} error={error} />} />
+        <Route path="/sports/:id" element={<Sport data={data} apiKey={API_KEY} />} />
+
+      </Routes>
     </div>
   );
 }
